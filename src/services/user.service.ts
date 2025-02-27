@@ -51,4 +51,14 @@ export class UserService implements IUserService {
     }
     return generateToken({ id: exisitngUser._id.toString() });
   }
+  async getUser(id: string): Promise<IUser | null> {
+    if (!id || id === '') {
+      throw new Error(TOKENS.errors.invalidId);
+    }
+    const exisitingUser = await this.userRepository.findById(id);
+    if (!exisitingUser) {
+      throw new Error(TOKENS.errors.userNotFound);
+    }
+    return exisitingUser;
+  }
 }

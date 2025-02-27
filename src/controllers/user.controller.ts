@@ -4,6 +4,7 @@ import IUserService from '../interfaces/IUserService';
 import SignUpRequestDTO from '../DTOs/signUp.dto';
 import LoginRequestDTO from '../DTOs/login.dto';
 import { TOKENS } from '../tokens';
+import { handleError } from '../utils/errorHandler';
 
 @injectable()
 export class UserController {
@@ -18,9 +19,7 @@ export class UserController {
         .status(TOKENS.httpStatus.CREATED)
         .json({ message: TOKENS.messages.userCreated, token });
     } catch (error: any) {
-      return res
-        .status(TOKENS.httpStatus.INTERNAL_SERVER_ERROR)
-        .json({ message: TOKENS.errors.internalServerError });
+      return handleError(res, error);
     }
   }
   async login(req: Request, res: Response) {
@@ -33,9 +32,18 @@ export class UserController {
         .status(TOKENS.httpStatus.OK)
         .json({ message: TOKENS.messages.loginSuccess, token });
     } catch (error: any) {
-      return res
-        .status(TOKENS.httpStatus.INTERNAL_SERVER_ERROR)
-        .json({ message: TOKENS.errors.internalServerError });
+      return handleError(res, error);
+    }
+  }
+  async getUser(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+
+      const user = await this.userService.getUser(id);
+
+      return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.userFound, user });
+    } catch (error: any) {
+      return handleError(res, error);
     }
   }
 }

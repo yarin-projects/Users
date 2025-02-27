@@ -27,6 +27,7 @@ export const TOKENS = {
     loginSuccess: 'Login successful',
     getRoute: 'GET / Route',
     helloWorld: 'Hello World',
+    userFound: 'User found',
   },
   errors: {
     jwtKeyMissing: 'JWT_KEY must be defined',
@@ -41,5 +42,6 @@ export const TOKENS = {
     userNotFound: 'User not found',
     userCouldNotBeCreated: 'User could not be created',
     invalidPassword: 'Invalid password',
+    invalidId: 'Invalid id',
   },
 };
