@@ -6,9 +6,8 @@ import IUserService from '../interfaces/IUserService';
 import { UserController } from '../controllers/user.controller';
 import { UserSqlRepository } from '../repositories/user-mysql.repository';
 import { TOKENS } from '../tokens';
-import dotenv from 'dotenv';
+import 'dotenv/config';
 
-dotenv.config();
 
 const container = new Container();
 
