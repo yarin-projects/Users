@@ -7,12 +7,16 @@ const userRouter: Router = Router();
 
 const userController = container.get<UserController>(TOKENS.UserController);
 
-userRouter.post(TOKENS.signUpRoute, (req: Request, res: Response) => {
+userRouter.post(TOKENS.routes.signUp, (req: Request, res: Response) => {
   userController.signUp(req, res);
 });
 
-userRouter.post(TOKENS.loginRoute, (req: Request, res: Response) => {
+userRouter.post(TOKENS.routes.login, (req: Request, res: Response) => {
   userController.login(req, res);
+});
+
+userRouter.get(TOKENS.routes.findById, (req: Request, res: Response) => {
+  userController.getUser(req, res);
 });
 
 export default userRouter;
