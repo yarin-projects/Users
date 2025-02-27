@@ -13,4 +13,7 @@ export class UserMongoDbRepository implements IUserRepository {
   async findByEmail(email: string): Promise<IUser | null> {
     return await User.findOne({ email });
   }
+  async findById(id: string): Promise<IUser | null> {
+    return await User.findById(id);
+  }
 }
