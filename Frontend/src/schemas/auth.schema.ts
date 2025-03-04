@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { TOKENS } from '../config/tokens';
+import { TOKENS } from '../config/tokens.config';
 
 export const signUpSchema = z.object({
   name: z

@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios';
-import { TOKENS } from '../config/tokens';
+import { TOKENS } from '../config/tokens.config';
 
 export const getErrorMessage = (error: unknown): string => {
   if (error instanceof AxiosError) {

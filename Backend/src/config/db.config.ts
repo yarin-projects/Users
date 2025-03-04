@@ -1,6 +1,6 @@
 import { TOKENS } from '../utils/tokens.utils';
-import { mongoDbConnection } from './mongodb';
-import { mySqlConncetion } from './mysql';
+import { mongoDbConnection } from './mongodb.config';
+import { mySqlConncetion } from './mysql.config';
 
 export const dbConnection = async () => {
   const { DB_URL, DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST, DB_TYPE } = process.env;

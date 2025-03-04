@@ -1,5 +1,5 @@
 import { app } from './app';
-import { dbConnection } from './config/db';
+import { dbConnection } from './config/db.config';
 import { TOKENS } from './utils/tokens.utils';
 import dotenv from 'dotenv';
 

@@ -1,8 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { SignUpFormData } from '../../schemas/auth.schema';
 import { AuthResponse, signUpRequest } from '../../api/api';
-import { getErrorMessage } from '../../utls/axios-error-handler';
-import { TOKENS } from '../../config/tokens';
+import { getErrorMessage } from '../../utls/axios-error-handler.utils';
+import { TOKENS } from '../../config/tokens.config';
 
 interface AuthState {
   name: string;

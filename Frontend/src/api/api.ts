@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SignUpFormData } from '../schemas/auth.schema';
-import { TOKENS } from '../config/tokens';
+import { TOKENS } from '../config/tokens.config';
 
 const api = axios.create({
   baseURL: TOKENS.api.baseUrl,
