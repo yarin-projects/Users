@@ -4,7 +4,7 @@ import IUserService from '../interfaces/IUserService';
 import SignUpRequestDTO from '../DTOs/signUp.dto';
 import LoginRequestDTO from '../DTOs/login.dto';
 import { TOKENS } from '../tokens';
-import { handleError } from '../utils/error.handler';
+import { handleError } from '../utils/error-handler';
 
 @injectable()
 export class UserController {
