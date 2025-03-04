@@ -1,5 +1,5 @@
 import { Response } from 'express';
-import { TOKENS } from '../tokens';
+import { TOKENS } from './tokens.utils';
 
 export const handleError = (res: Response, error: unknown): Response => {
   if (error instanceof Error) {

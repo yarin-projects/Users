@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { config } from '../config/config';
 import { SignUpFormData } from '../schemas/auth.schema';
+import { TOKENS } from '../config/tokens';
 
 const api = axios.create({
-  baseURL: config.apiBaseUrl,
-  timeout: 1000 * 60,
+  baseURL: TOKENS.api.baseUrl,
+  timeout: TOKENS.api.timeout,
 });
 
 export interface AuthResponse {
@@ -13,12 +13,12 @@ export interface AuthResponse {
 }
 
 export const loginRequest = async (email: string, password: string): Promise<AuthResponse> => {
-  const { data } = await api.post('/api/users/login', { email, password });
+  const { data } = await api.post(TOKENS.api.users.login, { email, password });
   return data;
 };
 
 export const signUpRequest = async (formData: SignUpFormData): Promise<AuthResponse> => {
   const { email, name, password } = formData;
-  const { data } = await api.post('/api/users/signup', { email, name, password });
+  const { data } = await api.post(TOKENS.api.users.signup, { email, name, password });
   return data;
 };

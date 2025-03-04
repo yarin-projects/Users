@@ -1,5 +1,5 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
-import { TOKENS } from '../tokens';
+import { TOKENS } from '../utils/tokens.utils';
 
 @Table({ tableName: TOKENS.users, modelName: TOKENS.User, timestamps: false })
 export class User extends Model {

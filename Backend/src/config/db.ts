@@ -1,4 +1,4 @@
-import { TOKENS } from '../tokens';
+import { TOKENS } from '../utils/tokens.utils';
 import { mongoDbConnection } from './mongodb';
 import { mySqlConncetion } from './mysql';
 

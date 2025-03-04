@@ -1,6 +1,6 @@
 import { Document, model, Schema } from 'mongoose';
-import IUser from '../interfaces/IUser';
-import { TOKENS } from '../tokens';
+import IUser from '../interfaces/user.interface';
+import { TOKENS } from '../utils/tokens.utils';
 
 type IUserDocument = IUser & Document;
 

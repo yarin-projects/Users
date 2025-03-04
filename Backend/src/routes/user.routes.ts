@@ -1,7 +1,7 @@
 import { Router, Request, Response } from 'express';
 import { UserController } from '../controllers/user.controller';
 import { container } from '../config/inversify';
-import { TOKENS } from '../tokens';
+import { TOKENS } from '../utils/tokens.utils';
 
 const userRouter: Router = Router();
 

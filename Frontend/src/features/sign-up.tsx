@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { SignUpFormData, signUpSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUp } from '../store/slices/auth.slice';
+import { TOKENS } from '../config/tokens';
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -26,16 +27,21 @@ const SignUp = () => {
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Input type="text" placeholder="Name..." {...register('name')} error={errors.name?.message} />
+      <Input
+        type="text"
+        placeholder={TOKENS.placeholders.name}
+        {...register('name')}
+        error={errors.name?.message}
+      />
       <Input
         type="email"
-        placeholder="E-Mail..."
+        placeholder={TOKENS.placeholders.email}
         {...register('email')}
         error={errors.email?.message}
       />
       <Input
         type="password"
-        placeholder="Password..."
+        placeholder={TOKENS.placeholders.password}
         {...register('password')}
         error={errors.password?.message}
       />
@@ -44,7 +50,7 @@ const SignUp = () => {
           {error}
         </Typography>
       )}
-      <Button type="submit">Submit</Button>
+      <Button type="submit">{TOKENS.submit}</Button>
     </Form>
   );
 };

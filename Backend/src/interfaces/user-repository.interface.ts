@@ -1,5 +1,5 @@
-import SignUpRequestDTO from '../DTOs/signUp.dto';
-import IUser from './IUser';
+import SignUpRequestDTO from '../DTOs/sign-up.dto';
+import IUser from './user.interface';
 
 export default interface IUserRepository {
   create(data: SignUpRequestDTO): Promise<IUser | null>;

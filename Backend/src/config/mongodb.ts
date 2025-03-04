@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { TOKENS } from '../tokens';
+import { TOKENS } from '../utils/tokens.utils';
 
 export const mongoDbConnection = async (dbUrl: string) => {
   try {

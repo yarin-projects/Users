@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { SignUpFormData } from '../../schemas/auth.schema';
 import { AuthResponse, signUpRequest } from '../../api/api';
 import { getErrorMessage } from '../../utls/axios-error-handler';
+import { TOKENS } from '../../config/tokens';
 
 interface AuthState {
   name: string;
@@ -12,15 +13,15 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-  name: '',
-  email: '',
-  token: '',
+  name: TOKENS.empty,
+  email: TOKENS.empty,
+  token: TOKENS.empty,
   isAuthenticated: false,
   error: null,
 };
 
 export const signUp = createAsyncThunk(
-  'auth/signup',
+  TOKENS.actions.auth.signUp,
   async (formData: SignUpFormData, { rejectWithValue }) => {
     try {
       const response: AuthResponse = await signUpRequest(formData);
@@ -37,7 +38,7 @@ export const signUp = createAsyncThunk(
 );
 
 const authSlice = createSlice({
-  name: 'auth',
+  name: TOKENS.auth,
   initialState,
   reducers: {},
   extraReducers: builder => {
@@ -50,9 +51,9 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(signUp.rejected, (state, action) => {
-        state.token = '';
-        state.email = '';
-        state.name = '';
+        state.token = TOKENS.empty;
+        state.email = TOKENS.empty;
+        state.name = TOKENS.empty;
         state.isAuthenticated = false;
         state.error = action.payload as string;
       });

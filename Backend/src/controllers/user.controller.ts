@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { inject, injectable } from 'inversify';
-import IUserService from '../interfaces/IUserService';
-import SignUpRequestDTO from '../DTOs/signUp.dto';
+import IUserService from '../interfaces/user-service.interface';
+import SignUpRequestDTO from '../DTOs/sign-up.dto';
 import LoginRequestDTO from '../DTOs/login.dto';
-import { TOKENS } from '../tokens';
-import { handleError } from '../utils/error-handler';
+import { TOKENS } from '../utils/tokens.utils';
+import { handleError } from '../utils/error-handler.utils';
 
 @injectable()
 export class UserController {

@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize-typescript';
 import { User } from '../models/user-sql.model';
-import { TOKENS } from '../tokens';
+import { TOKENS } from '../utils/tokens.utils';
 
 export const mySqlConncetion = async (
   name: string,

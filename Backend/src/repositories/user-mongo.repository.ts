@@ -1,7 +1,7 @@
 import { injectable } from 'inversify';
-import SignUpRequestDTO from '../DTOs/signUp.dto';
-import IUser from '../interfaces/IUser';
-import IUserRepository from '../interfaces/IUserRepository';
+import SignUpRequestDTO from '../DTOs/sign-up.dto';
+import IUser from '../interfaces/user.interface';
+import IUserRepository from '../interfaces/user-repository.interface';
 import User from '../models/user-mongo.model';
 
 @injectable()

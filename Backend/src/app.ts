@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import userRouter from './routes/user.routes';
-import { TOKENS } from './tokens';
+import { TOKENS } from './utils/tokens.utils';
 
 const app: Application = express();
 

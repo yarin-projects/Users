@@ -1,11 +1,21 @@
 import { AxiosError } from 'axios';
+import { TOKENS } from '../config/tokens';
 
 export const getErrorMessage = (error: unknown): string => {
   if (error instanceof AxiosError) {
-    return (error.response?.data as { message: string })?.message || 'An error occurred';
+    const data = error.response?.data;
+    if (
+      data &&
+      typeof data === TOKENS.object &&
+      TOKENS.message in data &&
+      typeof data.message === TOKENS.string
+    ) {
+      return data.message;
+    }
+    return TOKENS.errors.basicError;
   }
   if (error instanceof Error) {
     return error.message;
   }
-  return 'An unexpected error occurred';
+  return TOKENS.errors.unexpectedError;
 };

@@ -1,12 +1,12 @@
 import { inject, injectable } from 'inversify';
 import LoginRequestDTO from '../DTOs/login.dto';
-import SignUpRequestDTO from '../DTOs/signUp.dto';
-import IUserService from '../interfaces/IUserService';
-import { comparePassword, hashPassword } from '../utils/bcrypt';
-import { generateToken } from '../utils/jwt';
-import IUserRepository from '../interfaces/IUserRepository';
-import IUser from '../interfaces/IUser';
-import { TOKENS } from '../tokens';
+import SignUpRequestDTO from '../DTOs/sign-up.dto';
+import IUserService from '../interfaces/user-service.interface';
+import { comparePassword, hashPassword } from '../utils/bcrypt.utils';
+import { generateToken } from '../utils/jwt.utils';
+import IUserRepository from '../interfaces/user-repository.interface';
+import IUser from '../interfaces/user.interface';
+import { TOKENS } from '../utils/tokens.utils';
 
 @injectable()
 export class UserService implements IUserService {

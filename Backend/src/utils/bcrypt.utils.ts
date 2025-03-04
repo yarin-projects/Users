@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { TOKENS } from '../tokens';
+import { TOKENS } from './tokens.utils';
 
 export const hashPassword = async (password: string): Promise<string> => {
   return await bcrypt.hash(password, TOKENS.bcryptRounds);

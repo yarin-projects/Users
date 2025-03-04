@@ -1,13 +1,12 @@
 import { Container } from 'inversify';
 import { UserMongoDbRepository } from '../repositories/user-mongo.repository';
 import { UserService } from '../services/user.service';
-import IUserRepository from '../interfaces/IUserRepository';
-import IUserService from '../interfaces/IUserService';
+import IUserRepository from '../interfaces/user-repository.interface';
+import IUserService from '../interfaces/user-service.interface';
 import { UserController } from '../controllers/user.controller';
 import { UserSqlRepository } from '../repositories/user-mysql.repository';
-import { TOKENS } from '../tokens';
+import { TOKENS } from '../utils/tokens.utils';
 import 'dotenv/config';
-
 
 const container = new Container();
 
