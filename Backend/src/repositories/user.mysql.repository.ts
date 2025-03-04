@@ -1,19 +1,17 @@
-import { injectable } from 'inversify';
 import SignUpRequestDTO from '../DTOs/signUp.dto';
 import IUser from '../interfaces/IUser';
 import IUserRepository from '../interfaces/IUserRepository';
-import User from '../models/user-mongo.model';
+import { User } from '../models/user.sql.model';
 
-@injectable()
-export class UserMongoDbRepository implements IUserRepository {
+export class UserSqlRepository implements IUserRepository {
   async create(data: SignUpRequestDTO): Promise<IUser | null> {
-    const newUser = new User(data);
+    const newUser = await User.create({ data });
     return await newUser.save();
   }
   async findByEmail(email: string): Promise<IUser | null> {
-    return await User.findOne({ email });
+    return await User.findOne({ where: { email } });
   }
   async findById(id: string): Promise<IUser | null> {
-    return await User.findById(id);
+    return await User.findByPk(id);
   }
 }

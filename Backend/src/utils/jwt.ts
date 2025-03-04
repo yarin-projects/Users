@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import { IUserPayload } from '../interfaces/IUserPayload';
 import { TOKENS } from '../tokens';
-import { JwtExpiry } from '../types/jwt-expiry';
+import { JwtExpiry } from '../types/jwt.expiry';
 
 const tokenExpiry: JwtExpiry = (process.env.JWT_EXPIRATION as JwtExpiry) || TOKENS.jwtExpiry;
 
