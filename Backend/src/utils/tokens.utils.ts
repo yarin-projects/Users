@@ -9,6 +9,7 @@ export const TOKENS = {
   bcryptRounds: 10,
   jwtExpiry: '1h',
   serverPort: 3000,
+  corsOrigin: 'http://localhost:5173',
   routes: {
     default: '/',
     usersBaseUrl: '/api/users',
