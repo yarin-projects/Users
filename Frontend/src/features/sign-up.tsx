@@ -8,6 +8,7 @@ import { SignUpFormData, signUpSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUp } from '../store/slices/auth.slice';
 import { TOKENS } from '../config/tokens.config';
+import { strings } from '../strings/strings';
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -50,7 +51,7 @@ const SignUp = () => {
           {error}
         </Typography>
       )}
-      <Button type="submit">{TOKENS.signUp}</Button>
+      <Button type="submit">{strings.button.signUp}</Button>
     </Form>
   );
 };

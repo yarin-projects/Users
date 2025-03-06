@@ -5,6 +5,7 @@ import { TOKENS } from '../config/tokens.config';
 const api = axios.create({
   baseURL: TOKENS.api.baseUrl,
   timeout: TOKENS.api.timeout,
+  withCredentials: true,
 });
 
 export interface AuthResponse {

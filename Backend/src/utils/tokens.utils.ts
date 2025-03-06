@@ -10,6 +10,7 @@ export const TOKENS = {
   jwtExpiry: '1h',
   serverPort: 3000,
   corsOrigin: 'http://localhost:5173',
+  token: 'Token',
   routes: {
     default: '/',
     usersBaseUrl: '/api/users',

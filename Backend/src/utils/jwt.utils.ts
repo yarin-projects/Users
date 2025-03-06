@@ -8,3 +8,15 @@ const tokenExpiry: JwtExpiry = (process.env.JWT_EXPIRATION as JwtExpiry) || TOKE
 export const generateToken = (payload: IUserPayload) => {
   return jwt.sign(payload, process.env.JWT_KEY!, { expiresIn: tokenExpiry });
 };
+
+const timeValue = Number(tokenExpiry.slice(0, -1));
+const unit = tokenExpiry.slice(-1);
+
+const multipliers: { [key: string]: number } = {
+  s: 1000,
+  m: 60 * 1000,
+  h: 60 * 60 * 1000,
+  d: 24 * 60 * 60 * 1000,
+};
+
+export const expires = new Date(Date.now() + timeValue * (multipliers[unit] || 0));

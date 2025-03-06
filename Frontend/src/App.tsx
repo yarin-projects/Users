@@ -4,6 +4,7 @@ import { useAppSelector } from './store/store';
 import HomePage from './pages/home.page';
 import SignUpPage from './pages/sign-up.page';
 import LoginPage from './pages/login-page';
+import { TOKENS } from './config/tokens.config';
 
 function App() {
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
@@ -13,14 +14,17 @@ function App() {
         <Routes>
           {isAuthenticated ? (
             <>
-              <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path={TOKENS.routes.home} element={<HomePage />} />
+              <Route path={TOKENS.routes.wildCard} element={<Navigate to={TOKENS.routes.home} />} />
             </>
           ) : (
             <>
-              <Route path="/signup" element={<SignUpPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="*" element={<Navigate to="/signup" />} />
+              <Route path={TOKENS.routes.signUp} element={<SignUpPage />} />
+              <Route path={TOKENS.routes.login} element={<LoginPage />} />
+              <Route
+                path={TOKENS.routes.wildCard}
+                element={<Navigate to={TOKENS.routes.signUp} />}
+              />
             </>
           )}
         </Routes>

@@ -7,9 +7,12 @@ export const TOKENS = {
   string: 'string',
   auth: 'auth',
   empty: '',
-  submit: 'Submit',
-  login: 'Login',
-  signUp: 'Sign-Up',
+  routes: {
+    home: '/',
+    login: '/login',
+    signUp: '/signup',
+    wildCard: '*',
+  },
   api: {
     baseUrl: apiBaseUrl,
     timeout: 1000 * 60,

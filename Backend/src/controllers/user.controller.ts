@@ -5,6 +5,7 @@ import SignUpRequestDTO from '../DTOs/sign-up.dto';
 import LoginRequestDTO from '../DTOs/login.dto';
 import { TOKENS } from '../utils/tokens.utils';
 import { handleError } from '../utils/error-handler.utils';
+import { expires } from '../utils/jwt.utils';
 
 @injectable()
 export class UserController {
@@ -14,6 +15,8 @@ export class UserController {
       const data: SignUpRequestDTO = req.body;
 
       const token = await this.userService.signUp(data);
+
+      res.cookie(TOKENS.token, token, { httpOnly: true, expires: expires });
 
       return res
         .status(TOKENS.httpStatus.CREATED)
@@ -27,6 +30,8 @@ export class UserController {
       const data: LoginRequestDTO = req.body;
 
       const token = await this.userService.login(data);
+
+      res.cookie(TOKENS.token, token, { httpOnly: true, expires: expires });
 
       return res
         .status(TOKENS.httpStatus.OK)

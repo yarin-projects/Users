@@ -8,6 +8,7 @@ import Input from '../components/input';
 import { TOKENS } from '../config/tokens.config';
 import Typography from '../components/typography';
 import Button from '../components/button';
+import { strings } from '../strings/strings';
 
 const Login = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +42,7 @@ const Login = () => {
           {error}
         </Typography>
       )}
-      <Button type="submit">{TOKENS.login}</Button>
+      <Button type="submit">{strings.button.login}</Button>
     </Form>
   );
 };
