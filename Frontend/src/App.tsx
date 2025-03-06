@@ -1,31 +1,30 @@
-import { useState } from 'react'
-import './App.css'
+import './App.css';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { useAppSelector } from './store/store';
+import HomePage from './pages/home.page';
+import SignUpPage from './pages/sign-up.page';
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-        </a>
-        <a href="https://react.dev" target="_blank">
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Router>
+        <Routes>
+          {isAuthenticated ? (
+            <>
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </>
+          ) : (
+            <>
+              <Route path="/signup" element={<SignUpPage />} />
+              <Route path="*" element={<Navigate to="/signup" />} />
+            </>
+          )}
+        </Routes>
+      </Router>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
