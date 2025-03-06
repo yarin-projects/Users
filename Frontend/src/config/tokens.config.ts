@@ -19,6 +19,7 @@ export const TOKENS = {
   actions: {
     auth: {
       signUp: 'auth/signup',
+      login: 'auth/login',
     },
   },
   placeholders: {

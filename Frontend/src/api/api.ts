@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SignUpFormData } from '../schemas/auth.schema';
+import { LoginFormData, SignUpFormData } from '../schemas/auth.schema';
 import { TOKENS } from '../config/tokens.config';
 
 const api = axios.create({
@@ -12,8 +12,8 @@ export interface AuthResponse {
   token: string;
 }
 
-export const loginRequest = async (email: string, password: string): Promise<AuthResponse> => {
-  const { data } = await api.post(TOKENS.api.users.login, { email, password });
+export const loginRequest = async (formData: LoginFormData): Promise<AuthResponse> => {
+  const { data } = await api.post(TOKENS.api.users.login, formData);
   return data;
 };
 

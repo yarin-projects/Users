@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { SignUpFormData } from '../../schemas/auth.schema';
-import { AuthResponse, signUpRequest } from '../../api/api';
+import { LoginFormData, SignUpFormData } from '../../schemas/auth.schema';
+import { AuthResponse, loginRequest, signUpRequest } from '../../api/api';
 import { getErrorMessage } from '../../utls/axios-error-handler.utils';
 import { TOKENS } from '../../config/tokens.config';
 
@@ -19,6 +19,22 @@ const initialState: AuthState = {
   isAuthenticated: false,
   error: null,
 };
+
+export const login = createAsyncThunk(
+  TOKENS.actions.auth.login,
+  async (formData:LoginFormData, { rejectWithValue }) => {
+    try {
+      const response: AuthResponse = await loginRequest(formData);
+      return {
+        token: response.token,
+        email: formData.email,
+      }
+    } catch (error) {
+      const errorMessage: string = getErrorMessage(error);
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
 
 export const signUp = createAsyncThunk(
   TOKENS.actions.auth.signUp,
@@ -54,6 +70,18 @@ const authSlice = createSlice({
         state.token = TOKENS.empty;
         state.email = TOKENS.empty;
         state.name = TOKENS.empty;
+        state.isAuthenticated = false;
+        state.error = action.payload as string;
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        state.token = action.payload.token;
+        state.email = action.payload.email;
+        state.isAuthenticated = true;
+        state.error = null;
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.token = TOKENS.empty;
+        state.email = TOKENS.empty;
         state.isAuthenticated = false;
         state.error = action.payload as string;
       });
