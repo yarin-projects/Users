@@ -14,7 +14,7 @@ const LoginPage = () => {
         {strings.login.title}
       </Typography>
       <Login />
-      <Typography className="mt-3" size="text-sm">
+      <Typography className="mt-3 mb-2" size="text-sm">
         {strings.login.dontHaveAccount}
       </Typography>
       <Button onClick={() => navigate(TOKENS.routes.signUp)}>{strings.button.signUp}</Button>
