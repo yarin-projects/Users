@@ -1,38 +1,29 @@
 import { useForm } from 'react-hook-form';
-import Button from '../components/button';
+import { useAppDispatch, useAppSelector } from '../store/store';
+import { LoginFormData, loginSchema } from '../schemas/auth.schema';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { login } from '../store/slices/auth.slice';
 import Form from '../components/form';
 import Input from '../components/input';
-import Typography from '../components/typography';
-import { useAppDispatch, useAppSelector } from '../store/store';
-import { SignUpFormData, signUpSchema } from '../schemas/auth.schema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { signUp } from '../store/slices/auth.slice';
 import { TOKENS } from '../config/tokens.config';
+import Typography from '../components/typography';
+import Button from '../components/button';
 
-const SignUp = () => {
+const Login = () => {
   const dispatch = useAppDispatch();
   const error = useAppSelector(state => state.auth.error);
-
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpFormData>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(loginSchema),
   });
-
-  const onSubmit = (data: SignUpFormData) => {
-    dispatch(signUp(data));
+  const onSubmit = (data: LoginFormData) => {
+    dispatch(login(data));
   };
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Input
-        type="text"
-        placeholder={TOKENS.placeholders.name}
-        {...register('name')}
-        error={errors.name?.message}
-      />
       <Input
         type="email"
         placeholder={TOKENS.placeholders.email}
@@ -50,9 +41,9 @@ const SignUp = () => {
           {error}
         </Typography>
       )}
-      <Button type="submit">{TOKENS.signUp}</Button>
+      <Button type="submit">{TOKENS.login}</Button>
     </Form>
   );
 };
 
-export default SignUp;
+export default Login;

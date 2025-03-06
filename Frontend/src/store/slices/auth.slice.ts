@@ -22,13 +22,13 @@ const initialState: AuthState = {
 
 export const login = createAsyncThunk(
   TOKENS.actions.auth.login,
-  async (formData:LoginFormData, { rejectWithValue }) => {
+  async (formData: LoginFormData, { rejectWithValue }) => {
     try {
       const response: AuthResponse = await loginRequest(formData);
       return {
         token: response.token,
         email: formData.email,
-      }
+      };
     } catch (error) {
       const errorMessage: string = getErrorMessage(error);
       return rejectWithValue(errorMessage);
@@ -82,6 +82,7 @@ const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.token = TOKENS.empty;
         state.email = TOKENS.empty;
+        state.name = TOKENS.empty;
         state.isAuthenticated = false;
         state.error = action.payload as string;
       });

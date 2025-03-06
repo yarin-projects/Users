@@ -8,6 +8,8 @@ export const TOKENS = {
   auth: 'auth',
   empty: '',
   submit: 'Submit',
+  login: 'Login',
+  signUp: 'Sign-Up',
   api: {
     baseUrl: apiBaseUrl,
     timeout: 1000 * 60,
@@ -24,7 +26,7 @@ export const TOKENS = {
   },
   placeholders: {
     name: 'Name...',
-    email: 'E-Mail...',
+    email: 'Email...',
     password: 'Password...',
   },
   validations: {
