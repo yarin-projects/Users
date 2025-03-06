@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { useAppSelector } from './store/store';
 import HomePage from './pages/home.page';
 import SignUpPage from './pages/sign-up.page';
+import LoginPage from './pages/login-page';
 
 function App() {
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
@@ -18,6 +19,7 @@ function App() {
           ) : (
             <>
               <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/login" element={<LoginPage />} />
               <Route path="*" element={<Navigate to="/signup" />} />
             </>
           )}
