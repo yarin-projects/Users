@@ -33,6 +33,7 @@ export const TOKENS = {
     getRoute: 'GET / Route',
     helloWorld: 'Hello World',
     userFound: 'User found',
+    logoutSuccess: 'Logout successful',
   },
   errors: {
     jwtKeyMissing: 'JWT_KEY must be defined',

@@ -1,5 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
+import cookieParser from "cookie-parser";
 import userRouter from './routes/user.routes';
 import { TOKENS } from './utils/tokens.utils';
 
@@ -11,6 +12,7 @@ app.use(
     origin: TOKENS.corsOrigin,
   })
 );
+app.use(cookieParser());
 
 app.get(TOKENS.routes.default, (req: Request, res: Response) => {
   console.log(TOKENS.messages.getRoute);

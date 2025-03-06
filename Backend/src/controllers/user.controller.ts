@@ -40,6 +40,14 @@ export class UserController {
       return handleError(res, error);
     }
   }
+  async logOut(req: Request, res: Response) {
+    try {
+      res.clearCookie(TOKENS.token);
+      return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.logoutSuccess });
+    } catch (error) {
+      return handleError(res, error);
+    }
+  }
   async getUser(req: Request, res: Response) {
     try {
       const { id } = req.params;
