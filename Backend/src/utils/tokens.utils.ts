@@ -16,6 +16,7 @@ export const TOKENS = {
     usersBaseUrl: '/api/users',
     signUp: '/signup',
     login: '/login',
+    logout: '/logout',
     findById: '/:id',
   },
   httpStatus: {
@@ -49,5 +50,6 @@ export const TOKENS = {
     userCouldNotBeCreated: 'User could not be created',
     invalidPassword: 'Invalid password',
     invalidId: 'Invalid id',
+    noTokenProvided: 'Access Denied: No token provided',
   },
 };

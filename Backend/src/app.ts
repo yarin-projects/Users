@@ -1,6 +1,6 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-import cookieParser from "cookie-parser";
+import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.routes';
 import { TOKENS } from './utils/tokens.utils';
 
@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: TOKENS.corsOrigin,
+    credentials: true,
   })
 );
 app.use(cookieParser());

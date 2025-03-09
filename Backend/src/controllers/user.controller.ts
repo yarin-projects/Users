@@ -5,7 +5,8 @@ import SignUpRequestDTO from '../DTOs/sign-up.dto';
 import LoginRequestDTO from '../DTOs/login.dto';
 import { TOKENS } from '../utils/tokens.utils';
 import { handleError } from '../utils/error-handler.utils';
-import { expires } from '../utils/jwt.utils';
+import { setCookie } from '../utils/cookies.utils';
+import { AuthRequest } from '../interfaces/auth-request.interface';
 
 @injectable()
 export class UserController {
@@ -16,7 +17,7 @@ export class UserController {
 
       const token = await this.userService.signUp(data);
 
-      res.cookie(TOKENS.token, token, { httpOnly: true, expires: expires });
+      setCookie(res, token);
 
       return res
         .status(TOKENS.httpStatus.CREATED)
@@ -31,7 +32,7 @@ export class UserController {
 
       const token = await this.userService.login(data);
 
-      res.cookie(TOKENS.token, token, { httpOnly: true, expires: expires });
+      setCookie(res, token);
 
       return res
         .status(TOKENS.httpStatus.OK)
@@ -40,13 +41,9 @@ export class UserController {
       return handleError(res, error);
     }
   }
-  async logOut(req: Request, res: Response) {
-    try {
-      res.clearCookie(TOKENS.token);
-      return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.logoutSuccess });
-    } catch (error) {
-      return handleError(res, error);
-    }
+  async logout(req: AuthRequest, res: Response) {
+    res.clearCookie(TOKENS.token);
+    return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.logoutSuccess });
   }
   async getUser(req: Request, res: Response) {
     try {

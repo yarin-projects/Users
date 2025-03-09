@@ -9,6 +9,10 @@ export const generateToken = (payload: IUserPayload) => {
   return jwt.sign(payload, process.env.JWT_KEY!, { expiresIn: tokenExpiry });
 };
 
+export const verifyToken = (token: string) => {
+  return jwt.verify(token, process.env.JWT_KEY!);
+};
+
 const timeValue = Number(tokenExpiry.slice(0, -1));
 const unit = tokenExpiry.slice(-1);
 
