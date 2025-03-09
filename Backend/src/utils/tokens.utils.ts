@@ -18,6 +18,7 @@ export const TOKENS = {
     login: '/login',
     logout: '/logout',
     findById: '/:id',
+    me: '/me',
   },
   httpStatus: {
     OK: 200,

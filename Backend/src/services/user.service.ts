@@ -32,7 +32,11 @@ export class UserService implements IUserService {
     if (!newUser) {
       throw new Error(TOKENS.errors.userCouldNotBeCreated);
     }
-    return generateToken({ id: newUser._id.toString(), email: newUser.email });
+    return generateToken({
+      id: newUser._id.toString(),
+      email: newUser.email,
+      name: newUser.name,
+    });
   }
 
   async login(data: LoginRequestDTO): Promise<string> {
@@ -49,7 +53,11 @@ export class UserService implements IUserService {
     if (!isPasswordValid) {
       throw new Error(TOKENS.errors.invalidPassword);
     }
-    return generateToken({ id: exisitngUser._id.toString(), email: exisitngUser.email  });
+    return generateToken({
+      id: exisitngUser._id.toString(),
+      email: exisitngUser.email,
+      name: exisitngUser.name,
+    });
   }
   async getUser(id: string): Promise<IUser | null> {
     if (!id || id === '') {

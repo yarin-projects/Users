@@ -25,4 +25,8 @@ userRouter.post(TOKENS.routes.logout, authenticateUser, (req: AuthRequest, res: 
   userController.logout(req, res);
 });
 
+userRouter.get(TOKENS.routes.me, authenticateUser, (req: AuthRequest, res: Response) => {
+  userController.verifyCurrentUser(req, res);
+});
+
 export default userRouter;
