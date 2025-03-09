@@ -7,6 +7,7 @@ import { generateToken } from '../utils/jwt.utils';
 import IUserRepository from '../interfaces/user-repository.interface';
 import IUser from '../interfaces/user.interface';
 import { TOKENS } from '../utils/tokens.utils';
+import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 
 @injectable()
 export class UserService implements IUserService {
@@ -15,9 +16,9 @@ export class UserService implements IUserService {
   async signUp(data: SignUpRequestDTO): Promise<string> {
     const { email, password, name } = data;
 
-    const exisitingUser: IUser | null = await this.userRepository.findByEmail(email);
+    const existingUser: IUser | null = await this.userRepository.findByEmail(email);
 
-    if (exisitingUser) {
+    if (existingUser) {
       throw new Error(TOKENS.errors.userExists);
     }
 
@@ -42,31 +43,51 @@ export class UserService implements IUserService {
   async login(data: LoginRequestDTO): Promise<string> {
     const { email, password } = data;
 
-    const exisitngUser: IUser | null = await this.userRepository.findByEmail(email);
+    const existingUser: IUser | null = await this.userRepository.findByEmail(email);
 
-    if (!exisitngUser) {
+    if (!existingUser) {
       throw new Error(TOKENS.errors.userNotFound);
     }
 
-    const isPasswordValid: boolean = await comparePassword(password, exisitngUser.password);
+    const isPasswordValid: boolean = await comparePassword(password, existingUser.password);
 
     if (!isPasswordValid) {
       throw new Error(TOKENS.errors.invalidPassword);
     }
     return generateToken({
-      id: exisitngUser._id.toString(),
-      email: exisitngUser.email,
-      name: exisitngUser.name,
+      id: existingUser._id.toString(),
+      email: existingUser.email,
+      name: existingUser.name,
     });
   }
-  async getUser(id: string): Promise<IUser | null> {
+  async getUserById(id: string): Promise<IUser | null> {
     if (!id || id === '') {
       throw new Error(TOKENS.errors.invalidId);
     }
-    const exisitingUser = await this.userRepository.findById(id);
-    if (!exisitingUser) {
+    const existingUser = await this.userRepository.findById(id);
+    if (!existingUser) {
       throw new Error(TOKENS.errors.userNotFound);
     }
-    return exisitingUser;
+    return existingUser;
+  }
+  async getUserByEmail(email: string): Promise<IUser | null> {
+    if (!email || email === '') {
+      throw new Error(TOKENS.errors.invalidEmail);
+    }
+    const existingUser = await this.userRepository.findByEmail(email);
+    if (!existingUser) {
+      throw new Error(TOKENS.errors.userNotFound);
+    }
+    return existingUser;
+  }
+  async updateName(email: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
+    if (!email || email === '' || !data.name || data.name === '') {
+      throw new Error(TOKENS.errors.invalidData);
+    }
+    const updatedUser = await this.userRepository.updateName(email, data);
+    if (!updatedUser) {
+      throw new Error(TOKENS.errors.userNotFound);
+    }
+    return updatedUser;
   }
 }

@@ -29,4 +29,8 @@ userRouter.get(TOKENS.routes.me, authenticateUser, (req: AuthRequest, res: Respo
   userController.verifyCurrentUser(req, res);
 });
 
+userRouter.put(TOKENS.routes.update, authenticateUser, (req: AuthRequest, res: Response) => {
+  userController.updateUser(req, res);
+});
+
 export default userRouter;

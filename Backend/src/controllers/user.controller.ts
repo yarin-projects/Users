@@ -7,6 +7,7 @@ import { TOKENS } from '../utils/tokens.utils';
 import { handleError } from '../utils/error-handler.utils';
 import { setCookie } from '../utils/cookies.utils';
 import { AuthRequest } from '../interfaces/auth-request.interface';
+import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 
 @injectable()
 export class UserController {
@@ -54,10 +55,23 @@ export class UserController {
     try {
       const { id } = req.params;
 
-      const user = await this.userService.getUser(id);
+      const user = await this.userService.getUserById(id);
 
       return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.userFound, user });
     } catch (error: any) {
+      return handleError(res, error);
+    }
+  }
+  async updateUser(req: AuthRequest, res: Response) {
+    try {
+      const { email } = req.user!;
+      const data: UpdateNameRequestDTO = req.body;
+      const updatedUser = await this.userService.updateName(email, data);
+
+      return res
+        .status(TOKENS.httpStatus.OK)
+        .json({ message: TOKENS.messages.userUpdated, user: updatedUser });
+    } catch (error) {
       return handleError(res, error);
     }
   }

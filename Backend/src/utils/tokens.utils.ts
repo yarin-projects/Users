@@ -19,6 +19,7 @@ export const TOKENS = {
     logout: '/logout',
     findById: 'id/:id',
     me: '/me',
+    update: '/update',
   },
   httpStatus: {
     OK: 200,
@@ -36,6 +37,7 @@ export const TOKENS = {
     helloWorld: 'Hello World',
     userFound: 'User found',
     logoutSuccess: 'Logout successful',
+    userUpdated: 'User updated successfully',
   },
   errors: {
     jwtKeyMissing: 'JWT_KEY must be defined',
@@ -51,6 +53,8 @@ export const TOKENS = {
     userCouldNotBeCreated: 'User could not be created',
     invalidPassword: 'Invalid password',
     invalidId: 'Invalid id',
+    invalidData: 'Invalid data',
+    invalidEmail: 'Invalid email',
     noTokenProvided: 'Access Denied: No token provided',
   },
 };
