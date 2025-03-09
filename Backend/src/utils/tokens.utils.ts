@@ -17,7 +17,7 @@ export const TOKENS = {
     signUp: '/signup',
     login: '/login',
     logout: '/logout',
-    findById: 'id/:id',
+    findById: '/id/:id',
     me: '/me',
     update: '/update',
   },

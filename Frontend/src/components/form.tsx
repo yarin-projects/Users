@@ -8,7 +8,7 @@ type FormProps = {
 
 const Form: React.FC<FormProps> = ({ children, onSubmit, className }) => {
   return (
-    <form onSubmit={onSubmit} className={`"w-100 p-4 border-white ${className}`}>
+    <form onSubmit={onSubmit} className={`"w-100 border-white ${className}`}>
       {children}
     </form>
   );

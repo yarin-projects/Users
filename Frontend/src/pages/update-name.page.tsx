@@ -19,8 +19,10 @@ const UpdateNamePage = () => {
         {strings.update.currentName}
         {name}
       </Typography>
-      <UpdateNameForm />
-      <Button onClick={() => navigate(TOKENS.routes.home)}>{strings.button.home}</Button>
+      <Container className="flex flex-col gap-3">
+        <UpdateNameForm />
+        <Button onClick={() => navigate(TOKENS.routes.home)}>{strings.button.home}</Button>
+      </Container>
     </Container>
   );
 };
