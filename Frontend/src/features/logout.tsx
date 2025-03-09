@@ -1,5 +1,4 @@
 import Button from '../components/button';
-import Container from '../components/container';
 import Typography from '../components/typography';
 import { logout } from '../store/slices/auth.slice';
 import { useAppDispatch, useAppSelector } from '../store/store';
