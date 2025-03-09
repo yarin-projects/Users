@@ -21,5 +21,13 @@ export const loginSchema = z.object({
     .max(TOKENS.validations.password.max.value, TOKENS.validations.password.max.message),
 });
 
+export const updateNameSchema = z.object({
+  name: z
+    .string()
+    .min(TOKENS.validations.name.min.value, TOKENS.validations.name.min.message)
+    .max(TOKENS.validations.name.max.value, TOKENS.validations.name.max.message),
+});
+
 export type SignUpFormData = z.infer<typeof signUpSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;
+export type UpdateNameFormData = z.infer<typeof updateNameSchema>;

@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { LoginFormData, SignUpFormData } from '../../schemas/auth.schema';
+import { LoginFormData, SignUpFormData, UpdateNameFormData } from '../../schemas/auth.schema';
 import {
   AuthResponse,
   loginRequest,
   logoutRequest,
   signUpRequest,
+  updateUserNameRequest,
   VerifyAuthResponse,
   verifyCurrentUserRequest,
 } from '../../api/api';
@@ -32,9 +33,11 @@ export const login = createAsyncThunk(
   async (formData: LoginFormData, { rejectWithValue }) => {
     try {
       const response: AuthResponse = await loginRequest(formData);
+      const { user }: VerifyAuthResponse = await verifyCurrentUserRequest();
       return {
         token: response.token,
         email: formData.email,
+        name: user.name,
       };
     } catch (error) {
       const errorMessage: string = getErrorMessage(error);
@@ -72,15 +75,30 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const updateUserName = createAsyncThunk(
+  TOKENS.actions.auth.updateName,
+  async (name: UpdateNameFormData, { rejectWithValue }) => {
+    try {
+      const { user }: VerifyAuthResponse = await updateUserNameRequest(name);
+      return {
+        email: user.email,
+        name: user.name,
+      };
+    } catch (error) {
+      const errorMessage: string = getErrorMessage(error);
+      return rejectWithValue(errorMessage);
+    }
+  }
+);
+
 export const verifyCurrentUser = createAsyncThunk(
   TOKENS.actions.auth.verifyCurrentUser,
   async (_, { rejectWithValue }) => {
     try {
-      const response: VerifyAuthResponse = await verifyCurrentUserRequest();
+      const { user }: VerifyAuthResponse = await verifyCurrentUserRequest();
       return {
-        token: response.token,
-        email: response.email,
-        name: response.name,
+        email: user.email,
+        name: user.name,
       };
     } catch (error) {
       const errorMessage: string = getErrorMessage(error);
@@ -112,6 +130,7 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.token = action.payload.token;
         state.email = action.payload.email;
+        state.name = action.payload.name;
         state.isAuthenticated = true;
         state.error = null;
       })
@@ -137,7 +156,6 @@ const authSlice = createSlice({
         state.error = action.payload as string;
       })
       .addCase(verifyCurrentUser.fulfilled, (state, action) => {
-        state.token = action.payload.token;
         state.email = action.payload.email;
         state.name = action.payload.name;
         state.isAuthenticated = true;
@@ -148,6 +166,13 @@ const authSlice = createSlice({
         state.email = TOKENS.empty;
         state.name = TOKENS.empty;
         state.isAuthenticated = false;
+        state.error = action.payload as string;
+      })
+      .addCase(updateUserName.fulfilled, (state, action) => {
+        state.email = action.payload.email;
+        state.name = action.payload.name;
+      })
+      .addCase(updateUserName.rejected, (state, action) => {
         state.error = action.payload as string;
       });
   },

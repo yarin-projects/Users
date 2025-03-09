@@ -10,7 +10,7 @@ import Typography from '../components/typography';
 import Button from '../components/button';
 import { strings } from '../strings/strings';
 
-const Login = () => {
+const LoginForm = () => {
   const dispatch = useAppDispatch();
   const error = useAppSelector(state => state.auth.error);
   const {
@@ -47,4 +47,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginForm;

@@ -12,7 +12,7 @@ const Logout = () => {
     dispatch(logout());
   };
   return (
-    <Container>
+    <>
       <Button type="button" onClick={handleLogout}>
         {strings.button.logout}
       </Button>
@@ -21,7 +21,7 @@ const Logout = () => {
           {error}
         </Typography>
       )}
-    </Container>
+    </>
   );
 };
 

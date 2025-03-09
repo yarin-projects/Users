@@ -7,6 +7,7 @@ import LoginPage from './pages/login-page';
 import { TOKENS } from './strings/tokens';
 import { useEffect } from 'react';
 import { verifyCurrentUser } from './store/slices/auth.slice';
+import UpdateNamePage from './pages/update-name.page';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -29,6 +30,7 @@ function App() {
           {isAuthenticated ? (
             <>
               <Route path={TOKENS.routes.home} element={<HomePage />} />
+              <Route path={TOKENS.routes.updateName} element={<UpdateNamePage />} />
               <Route path={TOKENS.routes.wildCard} element={<Navigate to={TOKENS.routes.home} />} />
             </>
           ) : (

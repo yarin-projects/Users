@@ -4,28 +4,29 @@ import Form from '../components/form';
 import Input from '../components/input';
 import Typography from '../components/typography';
 import { useAppDispatch, useAppSelector } from '../store/store';
-import { SignUpFormData, signUpSchema } from '../schemas/auth.schema';
+import { UpdateNameFormData, updateNameSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { signUp } from '../store/slices/auth.slice';
+import { updateUserName } from '../store/slices/auth.slice';
 import { TOKENS } from '../strings/tokens';
 import { strings } from '../strings/strings';
+import { useNavigate } from 'react-router-dom';
 
-const SignUpForm = () => {
+const UpdateNameForm = () => {
   const dispatch = useAppDispatch();
   const error = useAppSelector(state => state.auth.error);
-
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<SignUpFormData>({
-    resolver: zodResolver(signUpSchema),
+  } = useForm<UpdateNameFormData>({
+    resolver: zodResolver(updateNameSchema),
   });
 
-  const onSubmit = (data: SignUpFormData) => {
-    dispatch(signUp(data));
+  const onSubmit = (data: UpdateNameFormData) => {
+    dispatch(updateUserName(data));
+    navigate(TOKENS.routes.home);
   };
-
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
       <Input
@@ -34,26 +35,14 @@ const SignUpForm = () => {
         {...register('name')}
         error={errors.name?.message}
       />
-      <Input
-        type="email"
-        placeholder={TOKENS.placeholders.email}
-        {...register('email')}
-        error={errors.email?.message}
-      />
-      <Input
-        type="password"
-        placeholder={TOKENS.placeholders.password}
-        {...register('password')}
-        error={errors.password?.message}
-      />
       {error && (
         <Typography className="text-red-500" size="text-sm">
           {error}
         </Typography>
       )}
-      <Button type="submit">{strings.button.signUp}</Button>
+      <Button type="submit">{strings.button.update}</Button>
     </Form>
   );
 };
 
-export default SignUpForm;
+export default UpdateNameForm;

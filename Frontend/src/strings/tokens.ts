@@ -11,6 +11,7 @@ export const TOKENS = {
     home: '/',
     login: '/login',
     signUp: '/signup',
+    updateName: '/update',
     wildCard: '*',
   },
   api: {
@@ -21,6 +22,7 @@ export const TOKENS = {
       signup: `${usersBasePath}/signup`,
       logout: `${usersBasePath}/logout`,
       me: `${usersBasePath}/me`,
+      updateName: `${usersBasePath}/update`,
     },
   },
   actions: {
@@ -29,6 +31,7 @@ export const TOKENS = {
       login: 'auth/login',
       logout: 'auth/logout',
       verifyCurrentUser: 'auth/verify-current-user',
+      updateName: 'auth/update-name',
     },
   },
   placeholders: {

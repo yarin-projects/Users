@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { LoginFormData, SignUpFormData } from '../schemas/auth.schema';
+import { LoginFormData, SignUpFormData, UpdateNameFormData } from '../schemas/auth.schema';
 import { TOKENS } from '../strings/tokens';
 
 const api = axios.create({
@@ -15,9 +15,10 @@ export interface AuthResponse {
 
 export interface VerifyAuthResponse {
   message: string;
-  token: string;
-  email: string;
-  name: string;
+  user: {
+    email: string;
+    name: string;
+  };
 }
 
 export const loginRequest = async (formData: LoginFormData): Promise<AuthResponse> => {
@@ -33,6 +34,14 @@ export const logoutRequest = async (): Promise<AuthResponse> => {
 export const signUpRequest = async (formData: SignUpFormData): Promise<AuthResponse> => {
   const { email, name, password } = formData;
   const { data } = await api.post(TOKENS.api.users.signup, { email, name, password });
+  return data;
+};
+
+export const updateUserNameRequest = async (
+  formData: UpdateNameFormData
+): Promise<VerifyAuthResponse> => {
+  const { name } = formData;
+  const { data } = await api.put(TOKENS.api.users.updateName, { name });
   return data;
 };
 
