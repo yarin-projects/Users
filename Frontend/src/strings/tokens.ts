@@ -1,5 +1,5 @@
 const apiBaseUrl: string = import.meta.env.VITE_PUBLIC_API_BASE_URL ?? 'http://localhost:3000';
-const apiUsersBaseUrl: string = '/api/users';
+const usersBasePath: string = '/api/users';
 
 export const TOKENS = {
   object: 'object',
@@ -17,14 +17,18 @@ export const TOKENS = {
     baseUrl: apiBaseUrl,
     timeout: 1000 * 60,
     users: {
-      login: `${apiUsersBaseUrl}/login`,
-      signup: `${apiUsersBaseUrl}/signup`,
+      login: `${usersBasePath}/login`,
+      signup: `${usersBasePath}/signup`,
+      logout: `${usersBasePath}/logout`,
+      me: `${usersBasePath}/me`,
     },
   },
   actions: {
     auth: {
       signUp: 'auth/signup',
       login: 'auth/login',
+      logout: 'auth/logout',
+      verifyCurrentUser: 'auth/verify-current-user',
     },
   },
   placeholders: {

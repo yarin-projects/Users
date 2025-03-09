@@ -4,7 +4,7 @@ import Typography from '../components/typography';
 import Login from '../features/login';
 import Button from '../components/button';
 import { strings } from '../strings/strings';
-import { TOKENS } from '../config/tokens.config';
+import { TOKENS } from '../strings/tokens';
 
 const LoginPage = () => {
   const navigate = useNavigate();

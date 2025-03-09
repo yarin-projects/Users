@@ -1,12 +1,26 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { useAppSelector } from './store/store';
+import { useAppDispatch, useAppSelector } from './store/store';
 import HomePage from './pages/home.page';
 import SignUpPage from './pages/sign-up.page';
 import LoginPage from './pages/login-page';
-import { TOKENS } from './config/tokens.config';
+import { TOKENS } from './strings/tokens';
+import { useEffect } from 'react';
+import { verifyCurrentUser } from './store/slices/auth.slice';
 
 function App() {
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        await dispatch(verifyCurrentUser());
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    checkAuth();
+  }, [dispatch]);
+
   const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
   return (
     <>

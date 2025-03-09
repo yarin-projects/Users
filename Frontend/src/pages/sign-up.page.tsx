@@ -4,7 +4,7 @@ import Typography from '../components/typography';
 import SignUp from '../features/sign-up';
 import Button from '../components/button';
 import { strings } from '../strings/strings';
-import { TOKENS } from '../config/tokens.config';
+import { TOKENS } from '../strings/tokens';
 
 const SignUpPage = () => {
   const navigate = useNavigate();

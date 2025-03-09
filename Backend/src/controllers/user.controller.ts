@@ -45,7 +45,7 @@ export class UserController {
     res.clearCookie(TOKENS.token);
     return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.logoutSuccess });
   }
-  async verifyCurrentUser(req: AuthRequest, res: Response) {
+  verifyCurrentUser(req: AuthRequest, res: Response) {
     return res
       .status(TOKENS.httpStatus.OK)
       .json({ message: TOKENS.messages.userFound, user: req.user });

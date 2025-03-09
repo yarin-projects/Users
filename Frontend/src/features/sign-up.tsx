@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { SignUpFormData, signUpSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUp } from '../store/slices/auth.slice';
-import { TOKENS } from '../config/tokens.config';
+import { TOKENS } from '../strings/tokens';
 import { strings } from '../strings/strings';
 
 const SignUp = () => {

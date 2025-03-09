@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { login } from '../store/slices/auth.slice';
 import Form from '../components/form';
 import Input from '../components/input';
-import { TOKENS } from '../config/tokens.config';
+import { TOKENS } from '../strings/tokens';
 import Typography from '../components/typography';
 import Button from '../components/button';
 import { strings } from '../strings/strings';

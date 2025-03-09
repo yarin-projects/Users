@@ -13,5 +13,6 @@ export const strings = {
   button: {
     login: 'Login',
     signUp: 'Sign-Up',
+    logout: 'Logout',
   },
 };
