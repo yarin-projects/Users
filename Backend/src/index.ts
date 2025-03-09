@@ -1,9 +1,9 @@
 import { app } from './app';
 import { dbConnection } from './config/db.config';
 import { TOKENS } from './utils/tokens.utils';
-import dotenv from 'dotenv';
+import { config } from 'dotenv';
 
-dotenv.config();
+config();
 
 const PORT = process.env.PORT || TOKENS.serverPort;
 

@@ -20,6 +20,6 @@ app.get(TOKENS.routes.default, (req: Request, res: Response) => {
   res.json({ message: TOKENS.messages.helloWorld });
 });
 
-app.use(TOKENS.routes.usersBaseUrl, userRouter);
+app.use(TOKENS.routes.usersBasePath, userRouter);
 
 export { app };

@@ -13,11 +13,11 @@ export const TOKENS = {
   token: 'Token',
   routes: {
     default: '/',
-    usersBaseUrl: '/api/users',
+    usersBasePath: '/api/users',
     signUp: '/signup',
     login: '/login',
     logout: '/logout',
-    findById: '/:id',
+    findById: 'id/:id',
     me: '/me',
   },
   httpStatus: {
