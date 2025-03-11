@@ -45,9 +45,10 @@ export class UserController {
     return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.logoutSuccess });
   }
   verifyCurrentUser(req: Request, res: Response) {
-    return res
-      .status(TOKENS.httpStatus.OK)
-      .json({ message: TOKENS.messages.userFound, user: req.user });
+    return res.status(TOKENS.httpStatus.OK).json({
+      message: TOKENS.messages.userFound,
+      user: { email: req.user!.email, name: req.user!.name },
+    });
   }
   async getUser(req: Request, res: Response) {
     try {
@@ -55,7 +56,10 @@ export class UserController {
 
       const user = await this.userService.getUserById(id);
 
-      return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.userFound, user });
+      return res.status(TOKENS.httpStatus.OK).json({
+        message: TOKENS.messages.userFound,
+        user: { email: req.user!.email, name: req.user!.name },
+      });
     } catch (error: any) {
       return handleError(res, error);
     }
@@ -66,9 +70,10 @@ export class UserController {
       const { name } = req.body;
       const updatedUser = await this.userService.updateUserName(id, name);
 
-      return res
-        .status(TOKENS.httpStatus.UPDATED)
-        .json({ message: TOKENS.messages.userUpdated, user: updatedUser });
+      return res.status(TOKENS.httpStatus.UPDATED).json({
+        message: TOKENS.messages.userUpdated,
+        user: { email: updatedUser!.email, name: updatedUser!.name },
+      });
     } catch (error) {
       return handleError(res, error);
     }
