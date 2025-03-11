@@ -149,6 +149,10 @@ const authSlice = createSlice({
         state.error = null;
       })
       .addCase(logout.rejected, (state, action) => {
+        state.token = TOKENS.empty;
+        state.email = TOKENS.empty;
+        state.name = TOKENS.empty;
+        state.isAuthenticated = false;
         state.error = action.payload as string;
       })
       .addCase(verifyCurrentUser.fulfilled, (state, action) => {
@@ -157,12 +161,12 @@ const authSlice = createSlice({
         state.isAuthenticated = true;
         state.error = null;
       })
-      .addCase(verifyCurrentUser.rejected, (state, action) => {
+      .addCase(verifyCurrentUser.rejected, state => {
         state.token = TOKENS.empty;
         state.email = TOKENS.empty;
         state.name = TOKENS.empty;
         state.isAuthenticated = false;
-        state.error = action.payload as string;
+        state.error = null;
       })
       .addCase(updateUserName.fulfilled, (state, action) => {
         state.email = action.payload.email;

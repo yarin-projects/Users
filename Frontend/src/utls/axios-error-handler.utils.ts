@@ -7,10 +7,10 @@ export const getErrorMessage = (error: unknown): string => {
     if (
       data &&
       typeof data === TOKENS.object &&
-      TOKENS.message in data &&
-      typeof data.message === TOKENS.string
+      TOKENS.error in data &&
+      typeof data.error === TOKENS.string
     ) {
-      return data.message;
+      return data.error;
     }
     return TOKENS.errors.basicError;
   }

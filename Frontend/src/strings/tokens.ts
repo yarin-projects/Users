@@ -4,6 +4,7 @@ const usersBasePath: string = '/api/users';
 export const TOKENS = {
   object: 'object',
   message: 'message',
+  error: 'error',
   string: 'string',
   auth: 'auth',
   empty: '',
