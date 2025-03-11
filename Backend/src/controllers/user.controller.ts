@@ -61,14 +61,14 @@ export class UserController {
       return handleError(res, error);
     }
   }
-  async updateUser(req: Request, res: Response) {
+  async updateUserName(req: Request, res: Response) {
     try {
-      const { email } = req.user!;
-      const data: UpdateNameRequestDTO = req.body;
-      const updatedUser = await this.userService.updateName(email, data);
+      const { id } = req.user!;
+      const { name } = req.body;
+      const updatedUser = await this.userService.updateUserName(id, name);
 
       return res
-        .status(TOKENS.httpStatus.OK)
+        .status(TOKENS.httpStatus.UPDATED)
         .json({ message: TOKENS.messages.userUpdated, user: updatedUser });
     } catch (error) {
       return handleError(res, error);

@@ -8,5 +8,5 @@ export default interface IUserService {
   login(data: LoginRequestDTO): Promise<string>;
   getUserById(id: string): Promise<IUser | null>;
   getUserByEmail(email: string): Promise<IUser | null>;
-  updateName(email: string, data: UpdateNameRequestDTO): Promise<IUser | null>;
+  updateUserName(id: string, data: UpdateNameRequestDTO): Promise<IUser | null>;
 }

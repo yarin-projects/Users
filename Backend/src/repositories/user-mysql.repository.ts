@@ -15,12 +15,10 @@ export class UserSqlRepository implements IUserRepository {
   async findById(id: string): Promise<IUser | null> {
     return await User.findByPk(id);
   }
-  async updateName(email: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      throw new Error('User not found');
-    }
-    user.name = data.name;
-    return await user.save();
+  async updateUserName(id: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
+    const updateUser = await User.findByPk(id);
+    updateUser!.name = data.name;
+    await updateUser?.save();
+    return updateUser;
   }
 }

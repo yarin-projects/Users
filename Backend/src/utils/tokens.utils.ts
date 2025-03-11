@@ -24,6 +24,7 @@ export const TOKENS = {
   httpStatus: {
     OK: 200,
     CREATED: 201,
+    UPDATED: 204,
     BAD_REQUEST: 400,
     INTERNAL_SERVER_ERROR: 500,
   },
@@ -53,8 +54,10 @@ export const TOKENS = {
     userCouldNotBeCreated: 'User could not be created',
     invalidPassword: 'Invalid password',
     invalidId: 'Invalid id',
+    invalidName: 'Invalid name',
     invalidData: 'Invalid data',
     invalidEmail: 'Invalid email',
     noTokenProvided: 'Access Denied: No token provided',
+    invalidToken: 'Access Denied: Invalid token',
   },
 };

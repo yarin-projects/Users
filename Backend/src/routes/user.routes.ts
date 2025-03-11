@@ -29,7 +29,7 @@ userRouter.get(TOKENS.routes.me, authenticateUser, (req: Request, res: Response)
 });
 
 userRouter.put(TOKENS.routes.update, authenticateUser, (req: Request, res: Response) => {
-  userController.updateUser(req, res);
+  userController.updateUserName(req, res);
 });
 
 export default userRouter;

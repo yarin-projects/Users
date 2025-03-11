@@ -80,14 +80,16 @@ export class UserService implements IUserService {
     }
     return existingUser;
   }
-  async updateName(email: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
-    if (!email || email === '' || !data.name || data.name === '') {
-      throw new Error(TOKENS.errors.invalidData);
+  async updateUserName(id: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
+    const { name } = data;
+    if (!name || '') {
+      throw new Error(TOKENS.errors.invalidName);
     }
-    const updatedUser = await this.userRepository.updateName(email, data);
-    if (!updatedUser) {
-      throw new Error(TOKENS.errors.userNotFound);
+
+    if (!id || '') {
+      throw new Error(TOKENS.errors.invalidId);
     }
-    return updatedUser;
+
+    return await this.userRepository.updateUserName(id, data);
   }
 }
