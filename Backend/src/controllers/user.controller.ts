@@ -6,7 +6,6 @@ import LoginRequestDTO from '../DTOs/login.dto';
 import { TOKENS } from '../utils/tokens.utils';
 import { handleError } from '../utils/error-handler.utils';
 import { setCookie } from '../utils/cookies.utils';
-import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 
 @injectable()
 export class UserController {
