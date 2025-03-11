@@ -8,6 +8,7 @@ import IUserRepository from '../interfaces/user-repository.interface';
 import IUser from '../interfaces/user.interface';
 import { TOKENS } from '../utils/tokens.utils';
 import UpdateNameRequestDTO from '../DTOs/update-name.dto';
+import { UserBuilder } from '../builders/user.builder';
 
 @injectable()
 export class UserService implements IUserService {
@@ -22,17 +23,23 @@ export class UserService implements IUserService {
       throw new Error(TOKENS.errors.userExists);
     }
 
+    const partialUser = new UserBuilder();
+
+    partialUser.setName(name).setEmail(email);
+
     const hashedPassword = await hashPassword(password);
 
-    const newUser: IUser | null = await this.userRepository.create({
-      email,
-      name,
-      password: hashedPassword,
-    });
+    partialUser.setPassword(hashedPassword);
+    const user = partialUser.build();
+
+    const newUser: IUser | null = await this.userRepository.create(user);
 
     if (!newUser) {
       throw new Error(TOKENS.errors.userCouldNotBeCreated);
     }
+
+    partialUser.setId(newUser._id.toString());
+
     return generateToken({
       id: newUser._id.toString(),
       email: newUser.email,
