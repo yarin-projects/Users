@@ -15,9 +15,9 @@ export class UserSqlRepository implements IUserRepository {
   async findById(id: string): Promise<IUser | null> {
     return await User.findByPk(id);
   }
-  async updateUserName(id: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
+  async updateUserName(id: string, data: string): Promise<IUser | null> {
     const updateUser = await User.findByPk(id);
-    updateUser!.name = data.name;
+    updateUser!.name = data;
     await updateUser?.save();
     return updateUser;
   }

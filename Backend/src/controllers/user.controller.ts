@@ -68,9 +68,10 @@ export class UserController {
     try {
       const { id } = req.user!;
       const { name } = req.body;
+
       const updatedUser = await this.userService.updateUserName(id, name);
 
-      return res.status(TOKENS.httpStatus.UPDATED).json({
+      return res.status(TOKENS.httpStatus.OK).json({
         message: TOKENS.messages.userUpdated,
         user: { email: updatedUser!.email, name: updatedUser!.name },
       });

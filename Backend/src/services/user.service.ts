@@ -87,9 +87,8 @@ export class UserService implements IUserService {
     }
     return existingUser;
   }
-  async updateUserName(id: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
-    const { name } = data;
-    if (!name || '') {
+  async updateUserName(id: string, data: string): Promise<IUser | null> {
+    if (!data || '') {
       throw new Error(TOKENS.errors.invalidName);
     }
 

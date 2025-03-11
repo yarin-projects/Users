@@ -17,7 +17,10 @@ export class UserMongoDbRepository implements IUserRepository {
   async findById(id: string): Promise<IUser | null> {
     return await User.findById(id);
   }
-  async updateUserName(id: string, data: UpdateNameRequestDTO): Promise<IUser | null> {
-    return await User.findOneAndUpdate({ _id: id }, data, { new: true });
+  async updateUserName(id: string, data: string): Promise<IUser | null> {
+    const updateUser = await User.findById(id);
+    updateUser!.name = data;
+    await updateUser!.save();
+    return updateUser;
   }
 }
