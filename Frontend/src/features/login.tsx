@@ -3,11 +3,11 @@ import { useAppDispatch, useAppSelector } from '../store/store';
 import { LoginFormData, loginSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { login } from '../store/slices/auth.slice';
-import Form from '../components/form';
-import Input from '../components/input';
+import Form from '../components/shared/form';
+import Input from '../components/shared/input';
 import { TOKENS } from '../strings/tokens';
-import Typography from '../components/typography';
-import Button from '../components/button';
+import Typography from '../components/shared/typography';
+import Button from '../components/shared/button';
 import { strings } from '../strings/strings';
 
 const LoginForm = () => {

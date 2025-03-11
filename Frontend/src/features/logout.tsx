@@ -1,5 +1,5 @@
-import Button from '../components/button';
-import Typography from '../components/typography';
+import Button from '../components/shared/button';
+import Typography from '../components/shared/typography';
 import { logout } from '../store/slices/auth.slice';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { strings } from '../strings/strings';
@@ -12,7 +12,7 @@ const Logout = () => {
   };
   return (
     <>
-      <Button type="button" onClick={handleLogout}>
+      <Button type="button" onClick={handleLogout} color="red">
         {strings.button.logout}
       </Button>
       {error && (

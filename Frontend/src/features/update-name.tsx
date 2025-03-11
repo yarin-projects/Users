@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
-import Button from '../components/button';
-import Form from '../components/form';
-import Input from '../components/input';
-import Typography from '../components/typography';
+import Button from '../components/shared/button';
+import Form from '../components/shared/form';
+import Input from '../components/shared/input';
+import Typography from '../components/shared/typography';
 import { useAppDispatch, useAppSelector } from '../store/store';
 import { UpdateNameFormData, updateNameSchema } from '../schemas/auth.schema';
 import { zodResolver } from '@hookform/resolvers/zod';

@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
-import Container from '../components/container';
-import Typography from '../components/typography';
-import Button from '../components/button';
+import Container from '../components/shared/container';
+import Typography from '../components/shared/typography';
+import Button from '../components/shared/button';
 import { strings } from '../strings/strings';
 import { TOKENS } from '../strings/tokens';
 import { useAppSelector } from '../store/store';
