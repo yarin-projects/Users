@@ -8,13 +8,15 @@ const api = axios.create({
   withCredentials: true,
 });
 
-export interface AuthResponse {
+export interface BaseApiResponse {
   message: string;
+}
+
+export interface AuthResponse extends BaseApiResponse {
   token: string;
 }
 
-export interface VerifyAuthResponse {
-  message: string;
+export interface VerifyAuthResponse extends BaseApiResponse {
   user: {
     email: string;
     name: string;
@@ -26,9 +28,8 @@ export const loginRequest = async (formData: LoginFormData): Promise<AuthRespons
   return data;
 };
 
-export const logoutRequest = async (): Promise<AuthResponse> => {
-  const { data } = await api.post(TOKENS.api.users.logout);
-  return data;
+export const logoutRequest = async (): Promise<void> => {
+  await api.post(TOKENS.api.users.logout);
 };
 
 export const signUpRequest = async (formData: SignUpFormData): Promise<AuthResponse> => {
