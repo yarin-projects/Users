@@ -1,14 +1,14 @@
 import React from 'react';
 
-type colorKeys = 'blue' | 'red';
+type colorOptions = 'blue' | 'red';
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
   type?: 'submit' | 'button';
-  color?: colorKeys;
+  color?: colorOptions;
 };
 
-const colorClasses: Record<colorKeys, string> = {
+const colorClasses: Record<colorOptions, string> = {
   blue: 'bg-blue-500',
   red: 'bg-red-500',
 };
