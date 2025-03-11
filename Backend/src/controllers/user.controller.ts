@@ -6,7 +6,6 @@ import LoginRequestDTO from '../DTOs/login.dto';
 import { TOKENS } from '../utils/tokens.utils';
 import { handleError } from '../utils/error-handler.utils';
 import { setCookie } from '../utils/cookies.utils';
-import { AuthRequest } from '../interfaces/auth-request.interface';
 import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 
 @injectable()
@@ -42,11 +41,11 @@ export class UserController {
       return handleError(res, error);
     }
   }
-  async logout(req: AuthRequest, res: Response) {
+  async logout(req: Request, res: Response) {
     res.clearCookie(TOKENS.token);
     return res.status(TOKENS.httpStatus.OK).json({ message: TOKENS.messages.logoutSuccess });
   }
-  verifyCurrentUser(req: AuthRequest, res: Response) {
+  verifyCurrentUser(req: Request, res: Response) {
     return res
       .status(TOKENS.httpStatus.OK)
       .json({ message: TOKENS.messages.userFound, user: req.user });
@@ -62,7 +61,7 @@ export class UserController {
       return handleError(res, error);
     }
   }
-  async updateUser(req: AuthRequest, res: Response) {
+  async updateUser(req: Request, res: Response) {
     try {
       const { email } = req.user!;
       const data: UpdateNameRequestDTO = req.body;
