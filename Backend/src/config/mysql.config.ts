@@ -2,12 +2,23 @@ import { Sequelize } from 'sequelize-typescript';
 import { User } from '../models/user-sql.model';
 import { TOKENS } from '../utils/tokens.utils';
 
-export const mySqlConncetion = async (
-  name: string,
-  user: string,
-  password: string,
-  host: string
-) => {
+export class MySqlConnection {
+  private static instance: Sequelize | null = null;
+  private constructor() {}
+  public static async getInstance(
+    name: string,
+    user: string,
+    password: string,
+    host: string
+  ): Promise<Sequelize> {
+    if (!MySqlConnection.instance) {
+      MySqlConnection.instance = await mySqlConncetion(name, user, password, host);
+    }
+    return MySqlConnection.instance;
+  }
+}
+
+const mySqlConncetion = async (name: string, user: string, password: string, host: string) => {
   const sequelize = new Sequelize({
     database: name,
     username: user,
