@@ -19,7 +19,7 @@ export class UserBuilder implements IUserBuilder {
     return this;
   }
   setId(id: string): IUserBuilder {
-    this.user._id = id;
+    this.user.id = id;
     return this;
   }
   build(): IUser {

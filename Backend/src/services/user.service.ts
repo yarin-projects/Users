@@ -37,10 +37,10 @@ export class UserService implements IUserService {
       throw new Error(TOKENS.errors.userCouldNotBeCreated);
     }
 
-    partialUser.setId(newUser._id.toString());
+    partialUser.setId(newUser.id.toString());
 
     return generateToken({
-      id: newUser._id.toString(),
+      id: newUser.id.toString(),
       email: newUser.email,
       name: newUser.name,
     });
@@ -61,7 +61,7 @@ export class UserService implements IUserService {
       throw new Error(TOKENS.errors.invalidPassword);
     }
     return generateToken({
-      id: existingUser._id.toString(),
+      id: existingUser.id.toString(),
       email: existingUser.email,
       name: existingUser.name,
     });

@@ -9,7 +9,7 @@ export class User extends Model {
     allowNull: false,
     unique: true,
   })
-  _id!: string;
+  id!: string;
 
   @Column({
     type: DataType.STRING,
