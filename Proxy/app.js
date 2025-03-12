@@ -4,13 +4,11 @@ import rateLimit from 'express-rate-limit';
 
 const app = express();
 
-const minuteValue = 1;
-const millisecondsInMinute = minuteValue * 60 * 1000;
-
+const ONE_MINUTE_MS = 60 * 1000;
 const TARGET_URL = 'http://localhost:3000';
 
 const limiter = rateLimit({
-  windowMs: millisecondsInMinute,
+  windowMs: ONE_MINUTE_MS,
   max: 100,
   message: 'Too many requests. Please Try Again Later',
 });
