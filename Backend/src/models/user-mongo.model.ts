@@ -1,8 +1,5 @@
-import { Document, model, Schema } from 'mongoose';
-import IUser from '../interfaces/user.interface';
+import { model, Schema } from 'mongoose';
 import { TOKENS } from '../utils/tokens.utils';
-
-type IUserDocument = IUser & Document;
 
 const userSchema = new Schema({
   name: {
@@ -20,6 +17,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = model<IUserDocument>(TOKENS.User, userSchema);
+const User = model(TOKENS.User, userSchema);
 
 export default User;

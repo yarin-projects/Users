@@ -3,6 +3,7 @@ export const TOKENS = {
   mongodb: 'mongodb',
   IUserRepository: 'IUserRepository',
   IUserService: 'IUserService',
+  IUserAdapter: 'IUserAdapter',
   User: 'User',
   users: 'users',
   UserController: 'UserController',

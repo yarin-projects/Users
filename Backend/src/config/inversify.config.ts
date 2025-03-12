@@ -5,13 +5,18 @@ import IUserService from '../interfaces/user-service.interface';
 import { UserController } from '../controllers/user.controller';
 import { TOKENS } from '../utils/tokens.utils';
 import { UserRepositoryFactory } from '../factories/user-repository.factory';
+import { IUserAdapter } from '../interfaces/user-adapter.interface';
+import { UserAdapter } from '../adapters/user.adapter';
 import 'dotenv/config';
 
 const dbType = process.env.DB_TYPE!;
 
 const container = new Container();
 
-const userRepository: IUserRepository = UserRepositoryFactory.createRepository(dbType);
+container.bind<IUserAdapter>(TOKENS.IUserAdapter).to(UserAdapter);
+const userAdapter = container.get<IUserAdapter>(TOKENS.IUserAdapter);
+
+const userRepository: IUserRepository = UserRepositoryFactory.createRepository(dbType, userAdapter);
 
 container.bind<IUserRepository>(TOKENS.IUserRepository).toConstantValue(userRepository);
 

@@ -1,7 +1,9 @@
+import { injectable } from 'inversify';
 import { IMongoUser } from '../interfaces/mongo-user.interface';
 import { IUserAdapter } from '../interfaces/user-adapter.interface';
 import IUser from '../interfaces/user.interface';
 
+@injectable()
 export class UserAdapter implements IUserAdapter {
   convertToStandardUser(user: IUser | IMongoUser): IUser {
     if ('_id' in user) {
