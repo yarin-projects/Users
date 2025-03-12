@@ -7,11 +7,12 @@ import { TOKENS } from '../utils/tokens.utils';
 import { UserRepositoryFactory } from '../factories/user-repository.factory';
 import 'dotenv/config';
 
+const dbType = process.env.DB_TYPE!;
+
 const container = new Container();
 
-const userRepository: IUserRepository = UserRepositoryFactory.createRepository(
-  process.env.DB_TYPE!
-);
+const userRepository: IUserRepository = UserRepositoryFactory.createRepository(dbType);
+
 container.bind<IUserRepository>(TOKENS.IUserRepository).toConstantValue(userRepository);
 
 container.bind<IUserService>(TOKENS.IUserService).to(UserService);
