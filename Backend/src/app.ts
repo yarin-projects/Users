@@ -4,6 +4,7 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRouter from './routes/user.routes';
 import { TOKENS } from './utils/tokens.utils';
+import { userEventEmitter } from './events/user-event-emitter';
 
 const app: Application = express();
 
@@ -15,6 +16,10 @@ app.use(
   })
 );
 app.use(cookieParser());
+
+userEventEmitter.on(TOKENS.events.userCreated, (user) => {
+  console.log(TOKENS.messages.userCreated, user);
+});
 
 app.get(TOKENS.routes.default, (req: Request, res: Response) => {
   console.log(TOKENS.messages.getRoute);

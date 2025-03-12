@@ -28,6 +28,9 @@ export const TOKENS = {
     BAD_REQUEST: 400,
     INTERNAL_SERVER_ERROR: 500,
   },
+  events: {
+    userCreated: 'userCreated',
+  },
   messages: {
     serverRunning: 'Server is running on port',
     mongoDbConnectionSuccess: 'MongoDb database connected successfully',

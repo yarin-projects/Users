@@ -8,6 +8,7 @@ import IUserRepository from '../interfaces/user-repository.interface';
 import IUser from '../interfaces/user.interface';
 import { TOKENS } from '../utils/tokens.utils';
 import { UserBuilder } from '../builders/user.builder';
+import { userEventEmitter } from '../events/user-event-emitter';
 
 @injectable()
 export class UserService implements IUserService {
@@ -37,10 +38,12 @@ export class UserService implements IUserService {
       throw new Error(TOKENS.errors.userCouldNotBeCreated);
     }
 
-    partialUser.setId(newUser.id.toString());
+    partialUser.setId(newUser.id);
+
+    userEventEmitter.emit(TOKENS.events.userCreated, partialUser.build());
 
     return generateToken({
-      id: newUser.id.toString(),
+      id: newUser.id,
       email: newUser.email,
       name: newUser.name,
     });
@@ -61,7 +64,7 @@ export class UserService implements IUserService {
       throw new Error(TOKENS.errors.invalidPassword);
     }
     return generateToken({
-      id: existingUser.id.toString(),
+      id: existingUser.id,
       email: existingUser.email,
       name: existingUser.name,
     });
