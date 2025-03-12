@@ -9,7 +9,7 @@ import { IUserAdapter } from '../interfaces/user-adapter.interface';
 @injectable()
 export class UserMongoDbRepository implements IUserRepository {
   constructor(@inject(TOKENS.IUserAdapter) private userAdapter: IUserAdapter) {}
-  convertToUser(user: any): IUser | null {
+  private convertToUser(user: any): IUser | null {
     return user ? this.userAdapter.convertToStandardUser(user) : null;
   }
   async create(data: SignUpRequestDTO): Promise<IUser | null> {
@@ -18,10 +18,12 @@ export class UserMongoDbRepository implements IUserRepository {
     return this.convertToUser(newUser);
   }
   async findByEmail(email: string): Promise<IUser | null> {
-    return await User.findOne({ email });
+    const user = await User.findOne({ email });
+    return this.convertToUser(user);
   }
   async findById(id: string): Promise<IUser | null> {
-    return await User.findById(id);
+    const user = await User.findById(id);
+    return this.convertToUser(user);
   }
   async updateUserName(id: string, data: string): Promise<IUser | null> {
     const user = await User.findById(id);
