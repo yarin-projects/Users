@@ -3,7 +3,6 @@ import SignUpRequestDTO from '../DTOs/sign-up.dto';
 import IUser from '../interfaces/user.interface';
 import IUserRepository from '../interfaces/user-repository.interface';
 import User from '../models/user-mongo.model';
-import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 
 @injectable()
 export class UserMongoDbRepository implements IUserRepository {

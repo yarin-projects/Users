@@ -7,7 +7,6 @@ import { generateToken } from '../utils/jwt.utils';
 import IUserRepository from '../interfaces/user-repository.interface';
 import IUser from '../interfaces/user.interface';
 import { TOKENS } from '../utils/tokens.utils';
-import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 import { UserBuilder } from '../builders/user.builder';
 
 @injectable()

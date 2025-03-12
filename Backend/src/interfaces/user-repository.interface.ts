@@ -1,5 +1,4 @@
 import SignUpRequestDTO from '../DTOs/sign-up.dto';
-import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 import IUser from './user.interface';
 
 export default interface IUserRepository {

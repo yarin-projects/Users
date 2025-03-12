@@ -2,7 +2,6 @@ import SignUpRequestDTO from '../DTOs/sign-up.dto';
 import IUser from '../interfaces/user.interface';
 import IUserRepository from '../interfaces/user-repository.interface';
 import { User } from '../models/user-sql.model';
-import UpdateNameRequestDTO from '../DTOs/update-name.dto';
 
 export class UserSqlRepository implements IUserRepository {
   async create(data: SignUpRequestDTO): Promise<IUser | null> {
