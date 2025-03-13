@@ -12,12 +12,12 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: [TOKENS.corsOrigin],
+    origin: TOKENS.corsAllowedUrls,
   })
 );
 app.use(cookieParser());
 
-userEventEmitter.on(TOKENS.events.userCreated, (user) => {
+userEventEmitter.on(TOKENS.events.userCreated, user => {
   console.log(TOKENS.messages.userCreated, user);
 });
 
