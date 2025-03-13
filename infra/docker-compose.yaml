@@ -1,0 +1,48 @@
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - app_network
+
+  backend:
+    build:
+      context: ../Backend/
+    container_name: backend
+    ports:
+      - 3000:3000
+    # env_file:
+    #   - .env
+    environment:
+      - JWT_KEY=1A=/3s29Q4/adw24=ADwads/532?esG
+      - JWT_EXPIRATION=1h
+      - DB_TYPE=mongodb
+      - DB_URL=mongodb://mongo:27017/TestDB
+    network:
+      - app_network
+    depends_on:
+      - mongo
+    restart: always
+
+  proxy:
+    build:
+      context: ../Proxy/
+    container_name: proxy
+    ports:
+      - 5000:5000
+    depends_on:
+      - backend
+    network:
+      - app_network
+    restart: always
+
+volumes:
+  mongo_data:
+
+networks:
+  app_network:
+    driver: bridge
