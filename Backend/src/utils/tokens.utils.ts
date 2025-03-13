@@ -6,7 +6,7 @@ import { messages } from './tokens/messages.tokens';
 import { routes } from './tokens/routes.tokens';
 import { tests } from './tokens/tests.tokens';
 
-export const TOKENS = {
+export const TOKENS = Object.freeze({
   mysql: 'mysql',
   mongodb: 'mongodb',
   userModelName: 'User',
@@ -23,4 +23,4 @@ export const TOKENS = {
   tests,
   messages,
   errors,
-};
+});
