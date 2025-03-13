@@ -15,13 +15,6 @@ services:
     container_name: server
     ports:
       - '3000:3000'
-    # env_file:
-    #   - .env
-    environment:
-      - JWT_KEY=uvd7t85v7wec7854f87yt
-      - JWT_EXPIRATION=1h
-      - DB_TYPE=mongodb
-      - DB_URL=mongodb://mongo:27017/TestDB
     networks:
       - app_network
     depends_on:

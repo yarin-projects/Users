@@ -9,6 +9,7 @@ import { tests } from './tokens/tests.tokens';
 export const TOKENS = Object.freeze({
   mysql: 'mysql',
   mongodb: 'mongodb',
+  docker: 'docker',
   userModelName: 'User',
   userTableName: 'users',
   bcryptRounds: 10,

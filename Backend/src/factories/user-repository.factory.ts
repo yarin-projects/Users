@@ -10,6 +10,7 @@ export class UserRepositoryFactory {
   public static createRepository(dbType: string, userAdapter: IUserAdapter): IUserRepository {
     switch (dbType) {
       case TOKENS.mongodb:
+      case TOKENS.docker:
         return new UserMongoDbRepository(userAdapter);
       case TOKENS.mysql:
         return new UserSqlRepository();
