@@ -8,7 +8,7 @@ import { IUserAdapter } from '../interfaces/user-adapter.interface';
 
 @injectable()
 export class UserMongoDbRepository implements IUserRepository {
-  constructor(@inject(TOKENS.IUserAdapter) private userAdapter: IUserAdapter) {}
+  constructor(@inject(TOKENS.injections.iUserAdapter) private userAdapter: IUserAdapter) {}
   private convertToUser(user: any): IUser | null {
     return user ? this.userAdapter.convertToStandardUser(user) : null;
   }

@@ -1,7 +1,7 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 import { TOKENS } from '../utils/tokens.utils';
 
-@Table({ tableName: TOKENS.users, modelName: TOKENS.User, timestamps: false })
+@Table({ tableName: TOKENS.usersTableName, modelName: TOKENS.userModelName, timestamps: false })
 export class User extends Model {
   @Column({
     type: DataType.UUIDV4,

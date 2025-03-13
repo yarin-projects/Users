@@ -9,7 +9,7 @@ import { setCookie } from '../utils/cookies.utils';
 
 @injectable()
 export class UserController {
-  constructor(@inject(TOKENS.IUserService) private userService: IUserService) {}
+  constructor(@inject(TOKENS.injections.iUserService) private userService: IUserService) {}
   async signUp(req: Request, res: Response) {
     try {
       const data: SignUpRequestDTO = req.body;

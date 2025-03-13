@@ -17,6 +17,6 @@ const userSchema = new Schema({
   },
 });
 
-const User = model(TOKENS.User, userSchema);
+const User = model(TOKENS.userModelName, userSchema);
 
 export default User;

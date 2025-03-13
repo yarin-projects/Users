@@ -6,7 +6,7 @@ import { authenticateUser } from '../middlwares/auth.middleware';
 
 const userRouter: Router = Router();
 
-const userController = container.get<UserController>(TOKENS.UserController);
+const userController = container.get<UserController>(TOKENS.injections.userController);
 
 userRouter.post(TOKENS.routes.signUp, (req: Request, res: Response) => {
   userController.signUp(req, res);

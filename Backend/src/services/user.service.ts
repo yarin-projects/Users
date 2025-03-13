@@ -12,7 +12,7 @@ import { userEventEmitter } from '../events/user-event-emitter';
 
 @injectable()
 export class UserService implements IUserService {
-  constructor(@inject(TOKENS.IUserRepository) private userRepository: IUserRepository) {}
+  constructor(@inject(TOKENS.injections.iUserRepository) private userRepository: IUserRepository) {}
 
   async signUp(data: SignUpRequestDTO): Promise<string> {
     const { email, password, name } = data;

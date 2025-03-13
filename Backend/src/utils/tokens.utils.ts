@@ -1,102 +1,26 @@
+import { errors } from './tokens/errors.tokens';
+import { events } from './tokens/events.tokens';
+import { httpStatus } from './tokens/http-status-codes.tokens';
+import { injections } from './tokens/injections.tokens';
+import { messages } from './tokens/messages.tokens';
+import { routes } from './tokens/routes.tokens';
+import { tests } from './tokens/tests.tokens';
+
 export const TOKENS = {
   mysql: 'mysql',
   mongodb: 'mongodb',
-  IUserRepository: 'IUserRepository',
-  IUserService: 'IUserService',
-  IUserAdapter: 'IUserAdapter',
-  User: 'User',
-  users: 'users',
-  UserController: 'UserController',
+  userModelName: 'User',
+  usersTableName: 'users',
   bcryptRounds: 10,
   jwtExpiry: '1h',
   serverPort: 3000,
-  corsAllowedUrls: ['http://localhost:5000', 'http://localhost:5173'],
+  corsAllowedUrls: ['http://localhost:5000'],
   token: 'Token',
-  routes: {
-    default: '/',
-    usersBasePath: '/api/users',
-    signUp: '/signup',
-    login: '/login',
-    logout: '/logout',
-    findById: '/id/:id',
-    me: '/me',
-    update: '/update',
-  },
-  httpStatus: {
-    OK: 200,
-    CREATED: 201,
-    BAD_REQUEST: 400,
-    INTERNAL_SERVER_ERROR: 500,
-  },
-  events: {
-    userCreated: 'userCreated',
-  },
-  tests: {
-    data: {
-      signUpUser: {
-        email: 'test@test.com',
-        password: '123123',
-        name: 'test',
-      },
-      loginUser: {
-        email: 'test@test.com',
-        password: '123123',
-      },
-    },
-    routes: {
-      signUp: '/api/users/signup',
-      login: '/api/users/login',
-    },
-    suites: {
-      userController: {
-        title: 'Tests For User Controller',
-        signUp: {
-          title: 'Sign-Up',
-          cases: {
-            validSignUp: 'Should return status code 201 if signed up successfully',
-            invalidName: "Should return status code 400 if name isn't probided",
-          },
-        },
-        login: {
-          title: 'Login',
-          cases: {
-            validLogin: 'Should return status code 200 if logged in successfully',
-            invalidUser: "Should return status code 400 if user doesn't exist",
-          },
-        },
-      },
-    },
-  },
-  messages: {
-    serverRunning: 'Server is running on port',
-    mongoDbConnectionSuccess: 'MongoDb database connected successfully',
-    mySqlConncetionSuccess: 'MySql database connected successfully',
-    userCreated: 'User created successfully',
-    loginSuccess: 'Login successful',
-    getRoute: 'GET / Route',
-    helloWorld: 'Hello World',
-    userFound: 'User found',
-    logoutSuccess: 'Logout successful',
-    userUpdated: 'User updated successfully',
-  },
-  errors: {
-    jwtKeyMissing: 'JWT_KEY must be defined',
-    dbTypeUndefined: 'DB_TYPE must be defined',
-    mySqlVariablesUndefined: 'MySql variables must be defined',
-    dbUrlUndefined: 'DB_URL must be defined',
-    dbTypeInvalid: 'Invalid DB_TYPE',
-    mongoDbConnectionFailed: 'Error connecting to the MongoDb database: ',
-    mySqlConnectionFailed: 'Error connecting to the MySql database: ',
-    internalServerError: 'Internal server error',
-    userExists: 'User already exists',
-    userNotFound: 'User not found',
-    userCouldNotBeCreated: 'User could not be created',
-    invalidPassword: 'Invalid password',
-    invalidId: 'Invalid id',
-    invalidName: 'Invalid name',
-    invalidData: 'Invalid data',
-    invalidEmail: 'Invalid email',
-    noTokenProvided: 'Access Denied: No token provided',
-    invalidToken: 'Access Denied: Invalid token',
-  },
+  injections,
+  routes,
+  httpStatus,
+  events,
+  tests,
+  messages,
+  errors,
 };

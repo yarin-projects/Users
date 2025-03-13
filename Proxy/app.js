@@ -23,6 +23,7 @@ app.use(limiter);
 app.use(
   '/',
   createProxyMiddleware({
+    // target: TOKENS.localTargetUrl,
     target: TOKENS.dockerTargetUrl,
     changeOrigin: true,
     logger: console,

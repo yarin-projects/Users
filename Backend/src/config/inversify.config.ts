@@ -13,14 +13,14 @@ const dbType = process.env.DB_TYPE!;
 
 const container = new Container();
 
-container.bind<IUserAdapter>(TOKENS.IUserAdapter).to(UserAdapter);
-const userAdapter = container.get<IUserAdapter>(TOKENS.IUserAdapter);
+container.bind<IUserAdapter>(TOKENS.injections.iUserAdapter).to(UserAdapter);
+const userAdapter = container.get<IUserAdapter>(TOKENS.injections.iUserAdapter);
 
 const userRepository: IUserRepository = UserRepositoryFactory.createRepository(dbType, userAdapter);
 
-container.bind<IUserRepository>(TOKENS.IUserRepository).toConstantValue(userRepository);
+container.bind<IUserRepository>(TOKENS.injections.iUserRepository).toConstantValue(userRepository);
 
-container.bind<IUserService>(TOKENS.IUserService).to(UserService);
-container.bind<UserController>(TOKENS.UserController).to(UserController);
+container.bind<IUserService>(TOKENS.injections.iUserService).to(UserService);
+container.bind<UserController>(TOKENS.injections.userController).to(UserController);
 
 export { container };
