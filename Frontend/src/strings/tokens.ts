@@ -1,4 +1,4 @@
-const apiBaseUrl: string = import.meta.env.VITE_PUBLIC_API_BASE_URL ?? 'http://localhost:3000';
+const apiBaseUrl: string = import.meta.env.VITE_PUBLIC_API_BASE_URL ?? 'http://localhost:5000';
 const usersBasePath: string = '/api/users';
 
 export const TOKENS = {
