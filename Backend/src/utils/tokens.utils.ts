@@ -10,7 +10,7 @@ export const TOKENS = {
   mysql: 'mysql',
   mongodb: 'mongodb',
   userModelName: 'User',
-  usersTableName: 'users',
+  userTableName: 'users',
   bcryptRounds: 10,
   jwtExpiry: '1h',
   serverPort: 3000,
